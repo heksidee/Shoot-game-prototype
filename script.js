@@ -3,8 +3,8 @@ var context=canvas.getContext('2d');
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
-let blockX=window.innerWidth/2-50;
-let blockY=window.innerHeight/2-50;
+let blockX=window.innerWidth/2-25;
+let blockY=window.innerHeight/2-25;
 var block1=context.fillRect(blockX, blockY, 50,50);
 let block_dx=10;
 let block_dy=10;
