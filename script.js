@@ -66,13 +66,37 @@ function moveDioganalyLeftDown(){
     block1=context.fillRect(blockX, blockY, 50,50);
 };
 
-
 function shootBullet(){
-    console.log('SHOOT');
-    let bulletX=blockX+50;
-    let bulletY=blockY;
-    let bullet=context.fillRect(10,10,bulletX, bulletY);
-    
+    let bulletX=blockX+51;
+    let bulletY=blockY+15;
+    context.fillRect(bulletX, bulletY,10,10);
+    while(bulletX<window.innerWidth){
+        context.clearRect(bulletX,bulletY,10,10);
+        bulletX+=40;
+        console.log(bulletX);
+        context.fillRect(bulletX, bulletY,10,10);
+    }
+};
+
+
+function createEnemies(){
+    console.log('testi');
+    spawnSide=Math.floor(Math.random() * 4) + 1;
+    console.log(spawnSide);
+    switch(spawnSide){
+        case 1://left side spawn
+            context.fillRect(0,window.innerHeight/2-25,100,50);
+            break;
+        case 2://right side spawn
+            context.fillRect(window.innerWidth-50,window.innerHeight/2-50,50,100);
+            break;
+        case 3://bottom spawm
+            context.fillRect(window.innerWidth/2,innerHeight-100,50,100);
+            break;
+        case 4://top spawn
+            context.fillRect(window.innerWidth/2,0,50,100);
+            break;
+    }
 };
 
 document.addEventListener("keydown",function(keyInput){
@@ -92,6 +116,8 @@ document.addEventListener("keydown",function(keyInput){
         case "KeyY":
             shootBullet();
             break;
+        case "KeyO":
+            createEnemies();
     }
 });
 //Liikuuminen dioganalilla 
@@ -107,8 +133,7 @@ document.addEventListener('keydown', (event) => {
     }else if(keysPressed['s'] && event.key == 'd' || keysPressed['d'] && event.key == 's'){
         moveDioganalyRightDown();
     }
- });
- 
- document.addEventListener('keyup', (event) => {
+});
+document.addEventListener('keyup', (event) => {
     delete keysPressed[event.key];
 });
