@@ -2,80 +2,91 @@ var canvas=document.querySelector("canvas");
 var context=canvas.getContext('2d');
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
-
+console.log(canvas.width,canvas.height);
 let blockX=window.innerWidth/2-25;
 let blockY=window.innerHeight/2-25;
-var block1=context.fillRect(blockX, blockY, 50,50);
+context.fillRect(blockX, blockY, 50,50);//Pelajaan malli
 let block_dx=10;
 let block_dy=10;
-
+console.log(`Pelaajan sijaitsi X:${blockX}, Y:${blockY}`);
 function moveBlockRight(){
-    context.clearRect(50,50,blockX, blockY+50);
-    if(blockX<window.innerWidth){
-        blockX+=block_dx;
-    }else{
-        blockX=window.innerWidth;
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
+    blockX+=block_dx;
+    let borderRight=canvas.width-50;
+    if(blockX>=borderRight){
+        blockX=borderRight;
     }
-    block1=context.fillRect(blockX, blockY, 50,50);
+    context.fillRect(blockX,blockY,50,50);
 };
 function moveBlockLeft(){
-    context.clearRect(50,50,blockX, blockY+50);
-    if(blockX>0){
-        blockX-=block_dx;
-    }else{
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
+    blockX-=block_dx;
+    if(blockX<=0){
         blockX=0;
-    };
-    block1=context.fillRect(blockX, blockY, 50,50);
+    }
+    context.fillRect(blockX,blockY,50,50);
 };
 function moveBlockUp(){
-    context.clearRect(50,50,blockX, blockY+50);
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
     blockY-=block_dy;
-    block1=context.fillRect(blockX, blockY, 50,50);
+    if(blockY<=0){
+        blockY=0;
+    }
+    context.fillRect(blockX, blockY, 50,50);
 };
 function moveBlockDown(){
-    context.clearRect(50,50,blockX, blockY+50);
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
     blockY+=block_dy;
-    block1=context.fillRect(blockX, blockY, 50,50);
+    let borderDown=canvas.heght-100;
+    if(blockY>=borderDown){
+        blockY=borderDown;
+    }
+    context.fillRect(blockX,blockY,50,50);
 };
 function moveDioganalyRightUp(){
-    context.clearRect(50,50,blockX, blockY+50);
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
     blockX+=block_dx;
     blockY-=block_dy;
-    block1=context.fillRect(blockX, blockY, 50,50);
+    let borderRight=canvas.width-50;
+    if(blockY<=0 && blockX>=borderRight){
+        blockX=borderRight;
+        blockY=0;
+    }
+    context.fillRect(blockX,blockY,50,50);
 };
 function moveDioganalyLeftUp(){
-    context.clearRect(50,50,blockX, blockY+50);
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
     blockY-=block_dy;
     blockX-=block_dx;
-    block1=context.fillRect(blockX, blockY, 50,50);
+    if(blockY<=0 && blockX<=0){
+        blockX=0;
+        blockY=0;
+    }
+    context.fillRect(blockX,blockY,50,50);
 };
 function moveDioganalyRightDown(){
-    context.clearRect(50,50,blockX, blockY+50);
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
     blockY+=block_dy;
     blockX+=block_dx;
-    block1=context.fillRect(blockX, blockY, 50,50);
+    context.fillRect(blockX,blockY,50,50);
 };
 function moveDioganalyLeftDown(){
-    context.clearRect(50,50,blockX, blockY+50);
+    console.log(blockX,blockY);
+    context.clearRect(blockX,blockY,50,50);
     blockY+=block_dy;
-    if(blockX>0){
-        blockX-=block_dx;
-    }else if(blockX<0){
-        blockX=0;
-    };
-    block1=context.fillRect(blockX, blockY, 50,50);
+    blockX-=block_dx;
+    context.fillRect(blockX,blockY,50,50);
 };
 
 function shootBullet(){
-    let bulletX=blockX+51;
-    let bulletY=blockY+15;
-    context.fillRect(bulletX, bulletY,10,10);
-    while(bulletX<window.innerWidth){
-        context.clearRect(bulletX,bulletY,10,10);
-        bulletX+=40;
-        console.log(bulletX);
-        context.fillRect(bulletX, bulletY,10,10);
-    }
+
 };
 
 
